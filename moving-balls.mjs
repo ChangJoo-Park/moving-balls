@@ -1,8 +1,16 @@
+const layoutContainerSize = {
+  width: document.querySelector('#paint').clientWidth,
+  height: document.querySelector('#paint').clientHeight,
+}
+
+const transformContainerSize = {
+  width: document.querySelector('#transform').clientWidth,
+  height: document.querySelector('#transform').clientHeight,
+}
+
 const nextPosition = (id) => {
-  const $container = document.querySelector(id)
-  const width = $container.clientWidth
-  const height = $container.clientHeight
-  return { top: Math.random() * height, left: Math.random() * width }
+  const containerSize = id === '#paint' ? layoutContainerSize : transformContainerSize
+  return { top: Math.random() * containerSize.width, left: Math.random() * containerSize.height }
 }
 
 document.querySelector('#paint #add-ball').addEventListener('click', (evt) => {
