@@ -23,8 +23,7 @@ window.addEventListener('resize', () => {
 
 const nextPosition = (id) => {
   const containerSize = id === '#paint' ? layoutContainerSize : transformContainerSize
-  const nextPosition = { top: Math.random() * containerSize.height, left: Math.random() * containerSize.width }
-  return nextPosition
+  return { top: Math.ceil(Math.random() * containerSize.height), left: Math.ceil(Math.random() * containerSize.width) }
 }
 
 document.querySelector('#paint #add-ball').addEventListener('click', (evt) => {
@@ -32,8 +31,16 @@ document.querySelector('#paint #add-ball').addEventListener('click', (evt) => {
   const moveBall = (id) => {
     const position = nextPosition('#paint')
     const $ball = document.getElementById(id)
-    $ball.style.left = `${position.left}px`
-    $ball.style.top = `${position.top}px`
+
+    if (!$ball) {
+      return
+    }
+
+    requestAnimationFrame(() => {
+      $ball.style.left = `${position.left}px`
+      $ball.style.top = `${position.top}px`
+    })
+
     setTimeout(() => {
       moveBall(id)
     }, 1000);
@@ -64,7 +71,13 @@ document.querySelector('#transform #add-ball').addEventListener('click', (evt) =
   const moveBall = (id) => {
     const position = nextPosition('#transform')
     const $ball = document.getElementById(id)
-    $ball.style.transform = `translate3d(${position.left}px, ${position.top}px, 0)`
+    if (!$ball) {
+      return
+    }
+    requestAnimationFrame(() => {
+      $ball.style.transform = `translate3d(${position.left}px, ${position.top}px, 0)`
+    })
+
     setTimeout(() => {
       moveBall(id)
     }, 1000);
