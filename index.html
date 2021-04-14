@@ -1,70 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .container {
-      width: 560px;
+    html, body {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+    * {
+      box-sizing: border-box;
     }
 
-    .flex {
-      display: flex;
+    #paint .ball {
+      transition: all 1s;
     }
 
-    .flex-row {
-      flex-direction: row;
-    }
-    .flex-1 {
-      flex: 1;
-    }
-
-    .w-8 {
-      width: 2rem;
-    }
-
-    .bar {
-      background: red;
-      width: 300px;
-      height: 30px;
-      transform-origin: left;
+    #transform .ball {
+      transition: transform 1s;
     }
   </style>
 </head>
-
-<body>
-  <div class="container">
-    <div id="chart" class="flex-1">
-      <div class="label seoul">Seoul</div>
-      <div class="bar seoul"></div>
-      <div class="label tokyo">Tokyo</div>
-      <div class="bar tokyo"></div>
-      <div class="label beijing">Beijing</div>
-      <div class="bar beijing"></div>
-      <div class="label paris">Paris</div>
-      <div class="bar paris"></div>
-      <div class="label berlin">Berlin</div>
-      <div class="bar berlin"></div>
-      <div class="label london">London</div>
-      <div class="bar london"></div>
-      <div class="label newyork">New York</div>
-      <div class="bar newyork"></div>
-    </div>
+<body style="width: 100vw; height: 100vh;">
+  <div id="paint" style="width: 49%; height: 100vh; display: inline-block; background-color: black;">
+    <button id="add-ball">Make</button>
+    <input id="count" type="number" min="1" max="100" value="1">
+    <button id="clear-ball">Clear</button>
   </div>
-  <div>
-    <button id="unoptimize">Unoptimize</button>
-    <button id="optimize">Optimize with Background Color</button>
-    <button id="optimize-background">Optimize with Background</button>
-    <button id="opacity-1">Opacity 1</button>
-    <button id="opacity-0">Opacity 0</button>
-    <button id="visibility-visible">Visibility Show</button>
-    <button id="visibility-hidden">Visibility Hidden</button>
+  <div id="transform" style="width: 49%; height: 100vh; display: inline-block;">
+    <button id="add-ball">Make</button>
+    <input id="count" type="number" min="1" max="100" value="1">
+    <button id="clear-ball">Clear</button>
   </div>
-  <div id="meter"></div>
-  <script type="module" src="main.mjs"></script>
+  <script type="module" src="moving-balls.mjs"></script>
 </body>
-
 </html>
