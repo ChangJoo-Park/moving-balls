@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Moving Balls</title>
   <style>
     html, body {
       padding: 0;
@@ -14,7 +14,33 @@
     * {
       box-sizing: border-box;
     }
+    #help {
+      position: fixed;
+      width: 400px;
+      height:400px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 1px solid black;
+    }
 
+    #help .wrapper {
+      position: relative;
+      padding: 1rem;
+      word-break: keep-all;
+    }
+    #help .wrapper .black {
+      background-color: #000;
+      color: #fff;
+    }
+
+    #help .closer {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 999;
+    }
     #paint .ball {
       transition: all 1s;
     }
@@ -26,14 +52,35 @@
 </head>
 <body style="width: 100vw; height: 100vh;">
   <div id="paint" style="width: 49%; height: 100vh; display: inline-block; background-color: black;">
-    <button id="add-ball">Make</button>
+    <button id="add-ball">만들기</button>
     <input id="count" type="number" min="1" max="100" value="1">
-    <button id="clear-ball">Clear</button>
+    <button id="clear-ball">지우기</button>
   </div>
   <div id="transform" style="width: 49%; height: 100vh; display: inline-block;">
-    <button id="add-ball">Make</button>
+    <button id="add-ball">만들기</button>
     <input id="count" type="number" min="1" max="100" value="1">
-    <button id="clear-ball">Clear</button>
+    <button id="clear-ball">지우기</button>
+  </div>
+  <div id="help">
+    <div id="closer" class="closer">
+      <button>X</button>
+    </div>
+    <div class="wrapper">
+      <h1>Moving Balls</h1>
+
+      <div>
+        <p>Layout, Paint, Composite를 확인하려면,</p>
+        <p>크롬 개발자도구를 열어 <strong>Rendering</strong> 탭과 <strong>Layout</strong> 탭을 확인하세요</p>
+        <p class="black">검은 배경은 top, left 로 공을 움직입니다.</p>
+        <p>흰 배경은 transform 으로 공을 움직입니다.</p>
+        <p>한번에 만들 수 있는 공은 1~100개 입니다.</p>
+        <p>
+          <a href="https://github.com/ChangJoo-Park/moving-balls" target="_blank">
+            <img src="github.png" width="64" height="64" alt="Github changjoo-park/moving-balls">
+          </a>
+        </p>
+      </div>
+    </div>
   </div>
   <script type="module" src="moving-balls.mjs"></script>
 </body>

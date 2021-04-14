@@ -1,23 +1,37 @@
-const layoutContainerSize = {
-  width: document.querySelector('#paint').clientWidth,
-  height: document.querySelector('#paint').clientHeight,
+const OFFSET = 50
+let layoutContainerSize = {
+  width: document.querySelector('#paint').clientWidth - OFFSET,
+  height: document.querySelector('#paint').clientHeight - OFFSET,
 }
 
-const transformContainerSize = {
-  width: document.querySelector('#transform').clientWidth,
-  height: document.querySelector('#transform').clientHeight,
+let transformContainerSize = {
+  width: document.querySelector('#transform').clientWidth - OFFSET,
+  height: document.querySelector('#transform').clientHeight - OFFSET,
 }
+
+window.addEventListener('resize', () => {
+  layoutContainerSize = {
+    width: document.querySelector('#paint').clientWidth - OFFSET,
+    height: document.querySelector('#paint').clientHeight - OFFSET,
+  }
+
+  transformContainerSize = {
+    width: document.querySelector('#transform').clientWidth - OFFSET,
+    height: document.querySelector('#transform').clientHeight - OFFSET,
+  }
+})
 
 const nextPosition = (id) => {
   const containerSize = id === '#paint' ? layoutContainerSize : transformContainerSize
-  return { top: Math.random() * containerSize.width, left: Math.random() * containerSize.height }
+  const nextPosition = { top: Math.random() * containerSize.height, left: Math.random() * containerSize.width }
+  return nextPosition
 }
 
 document.querySelector('#paint #add-ball').addEventListener('click', (evt) => {
   const $container = document.querySelector('#paint')
   const moveBall = (id) => {
     const position = nextPosition('#paint')
-    const $ball =  document.getElementById(id)
+    const $ball = document.getElementById(id)
     $ball.style.left = `${position.left}px`
     $ball.style.top = `${position.top}px`
     setTimeout(() => {
@@ -49,7 +63,7 @@ document.querySelector('#transform #add-ball').addEventListener('click', (evt) =
   const $container = document.querySelector('#transform')
   const moveBall = (id) => {
     const position = nextPosition('#transform')
-    const $ball =  document.getElementById(id)
+    const $ball = document.getElementById(id)
     $ball.style.transform = `translate3d(${position.left}px, ${position.top}px, 0)`
     setTimeout(() => {
       moveBall(id)
@@ -89,4 +103,8 @@ document.querySelector('#transform #clear-ball').addEventListener('click', (evt)
   balls.forEach($ball => {
     $ball.remove()
   })
+})
+
+document.querySelector('#help #closer').addEventListener('click', (evt) => {
+  document.querySelector('#help').remove()
 })
